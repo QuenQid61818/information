@@ -4,6 +4,7 @@ from flask import Flask, session
 from flask.ext.sqlalchemy import SQLAlchemy
 # 可以用来指定 session 保存的位置
 from flask_session import Session
+from flask_script import Manager
 
 
 class Config(object):
@@ -46,10 +47,13 @@ CSRFProtect(app)
 Session(app)
 
 
+manager = Manager(app)
+
+
 @app.route('/')
 def index():
     session['name'] = 'itheima'
     return 'index111'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    manager.run(debug=True)
